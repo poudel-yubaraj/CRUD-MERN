@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 
 const Users = () => {
-    const[users, setUsers]=useState([{
-        Name:"yubaraj", Email:"poudelyubaraj420@gmail.com",Age:20
-    }])
+    // const[users, setUsers]=useState([{
+    //     Name:"yubaraj", Email:"poudelyubaraj420@gmail.com",Age:20
+    // }])
+
+const [users, setUsers]=useState([])
+useEffect(()=>{
+    axios.get('http://localhost:5001')
+    .then(result=>setUsers(result.data))
+    .catch(err=>console.log(err))
+},[])
   return (
     <div className='d-flex vh-100 bg-primary justify-content-center align-items-center'>
         <div className='w-80 bg-white rounded p-3'>
@@ -23,11 +31,11 @@ const Users = () => {
                         users.map((user)=>{
                         
                           return  <tr>
-                            <th>{user.Name}</th>
-                            <th>{user.Email}</th>
-                            <th>{user.Age}</th>
+                            <th>{user.name}</th>
+                            <th>{user.email}</th>
+                            <th>{user.age}</th>
                             <th> <Link to="/update" className='btn btn-success'>Update</Link>
-                            <Link to="/delete" className='btn btn-success'>Delete</Link>
+                            <Link to="/delete" className='btn btn-danger'>Delete</Link>
                              </th>
                         </tr>
                         })

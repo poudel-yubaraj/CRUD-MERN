@@ -14,7 +14,7 @@ connectDb();
 app.use(cors());
 app.use(express.json()); // Parse incoming JSON requests
 
-app.use("/createUser",require('./routes/userRoutes'))
+app.use("/",require('./routes/userRoutes'))
 
 
 // app.post("/createUser",(req,res)=>{
