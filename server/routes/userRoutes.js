@@ -1,17 +1,14 @@
+const {createUser,getUsers,getUser, updateUser,deleteUser}= require('../controller/userController')
 const express = require("express");
 const router = express.Router();
 const UserModel = require('../models/Users')
-router.post("/createUser", (req, res) => {
-     UserModel.create(req.body)
-     .then(users => res.json(users))
-     .catch(err=> res.json(err))
-     console.log("Hello world");
-});
+router.post("/createUser",createUser)
 
-router.get("/",(req,res)=>{
-     UserModel.find({})
-     .then(users=>res.json(users))
-     .catch(err=>res.json(err))
-})
+router.get('/',getUsers)
+router.get('/getUser/:id',getUser)
+router.put('/updateUser/:id',updateUser)
+router.delete('/deleteUser/:id',deleteUser)
 
 module.exports = router;
+
+

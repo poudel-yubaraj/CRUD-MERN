@@ -13,6 +13,14 @@ useEffect(()=>{
     .then(result=>setUsers(result.data))
     .catch(err=>console.log(err))
 },[])
+
+const handleDelete = (id)=>{
+    axios.delete("http://localhost:5001/deleteUser/"+id)
+    .then(result=>{console.log(result)
+        window.location.reload()
+    })
+    .catch(err=>console.log(err))
+}
   return (
     <div className='d-flex vh-100 bg-primary justify-content-center align-items-center'>
         <div className='w-80 bg-white rounded p-3'>
@@ -34,8 +42,9 @@ useEffect(()=>{
                             <th>{user.name}</th>
                             <th>{user.email}</th>
                             <th>{user.age}</th>
-                            <th> <Link to="/update" className='btn btn-success'>Update</Link>
-                            <Link to="/delete" className='btn btn-danger'>Delete</Link>
+                            <th> <Link to={`/update/${user._id}`} className='btn btn-success'>Update</Link>
+                            <button className='btn btn-danger' 
+                            onClick={(e)=>handleDelete(user._id)}>Delete</button>
                              </th>
                         </tr>
                         })

@@ -14,7 +14,9 @@ const navigate = useNavigate()
         console.log(result);
         navigate('/');
       })
-      .catch(err => console.log(err))
+      // .catch(err => console.log(err))
+      .catch(err=> console.log("network navayera errr"))
+      console.log(e);
     }
 
   return (

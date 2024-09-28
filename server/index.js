@@ -21,7 +21,6 @@ app.use("/",require('./routes/userRoutes'))
 //     console.log("Hello world")
 // })
 
-
 // Start server
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
